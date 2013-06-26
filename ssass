@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+# The command line Sass parser... with a twist :)
+# author: TheBlacksmith (a.k.a Saulo Vallory)
+
+require 'rubygems'
+require 'sass'
+require 'sass/exec'
+
+require 'ssass-importer'
+
+Ssass::Importers::ImportOnce.DEBUG = ARGV.include? "--ssass-debug"
+ARGV.delete "--ssass-debug"
+
+# Couldn't find a way to pass this options to sass so, for now, I'm overriding the parse method
+class Sass::Exec::Sass
+  def parse
+    @opts = OptionParser.new(&method(:set_opts))
+    @opts.parse!(@args)
+
+    @options[:for_engine][:filesystem_importer] = Ssass::Importers::ImportOnce
+    process_result
+
+    @options
+  end
+end
+
+opts = Sass::Exec::Sass.new(ARGV)
+opts.parse!

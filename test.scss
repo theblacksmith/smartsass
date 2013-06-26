@@ -1,0 +1,16 @@
+// Let's import a file
+@import "imported";
+
+// add some rules
+$blue: #3bbfce;
+
+div.bleue {
+	background-color: $blue;
+}
+
+// And import the same file again
+@import "./imported.scss";
+
+// even if we change the way we reference the file, it won't be imported
+// run ssass --ssass-debug test.scss
+// and see for yourself
