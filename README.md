@@ -1,5 +1,4 @@
-Smart Sass Importer
-=========
+# Smart Sass Importer is deprecated. There is now an [official plugin](https://github.com/chriseppstein/compass/blob/master/import-once/README.md) and you should use it 
 
 Sass compiler with a twist. The twist is a importer which will only import a file ONCE!
 
